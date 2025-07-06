@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Admin Dashboard for VAGABOND | Rakesh Daman" />
+  <title>VAGABOND | Admin Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <style>
+    body {
+      font-family: 'Shippori Mincho', serif, system-ui;
+      background: linear-gradient(135deg, #e0e0e0 0%, #f5f5f5 100%);
+      color: #000;
+      overflow-x: hidden;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+    }
+
+    .dashboard {
+      max-width: 4xl;
+      width: 100%;
+    }
+
+    .project-card {
+      background: rgba(255, 255, 255, 0.8);
+      border: 2px solid #B22222;
+      border-radius: 8px;
+      padding: 1.5rem;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      transform-origin: center;
+    }
+
+    .project-card:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 8px 16px rgba(178, 34, 34, 0.3);
+    }
+
+    .parallax-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('https://source.unsplash.com/random/1920x1080/?katana') no-repeat center/cover;
+      opacity: 0.2;
+      z-index: -1;
+    }
+
+    #particles-js {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+
+    .theme-toggle,
+    .logout-btn {
+      position: fixed;
+      top: 20px;
+      z-index: 100;
+    }
+
+    .logout-btn {
+      top: 70px;
+      right: 20px;
+    }
+
+    .dark-theme {
+      background: linear-gradient(135deg, #1a1a1a 0%, #000 100%);
+      color: #fff;
+    }
+
+    .dark-theme .parallax-bg {
+      opacity: 0.1;
+    }
+
+    .dark-theme .project-card {
+      background: rgba(0, 0, 0, 0.5);
+      border-color: #fff;
+      box-shadow: 0 8px 16px rgba(255, 255, 255, 0.1);
+    }
+  </style>
+</head>
+
+<body class="light-theme">
+  <div class="parallax-bg"></div>
+  <div id="particles-js"></div>
+  <button id="themeToggle" class="theme-toggle px-4 py-2 bg-gray-800 text-white hover:bg-gray-700 rounded">Dark
+    Mode</button>
+  <button onclick="logout()" class="logout-btn px-4 py-2 bg-red-700 hover:bg-red-600 rounded text-white">Logout</button>
+
+  <section class="dashboard">
+    <h1 class="text-4xl font-bold text-center mb-8">VAGABOND Admin Dashboard</h1>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div>
+        <h2 class="text-2xl font-semibold mb-4">Manage Projects</h2>
+        <form id="addProjectForm" class="space-y-4 mb-6" aria-label="Add new project">
+          <input id="projTitle" class="w-full p-2 text-black rounded" placeholder="Project Title" required
+            aria-required="true" />
+          <textarea id="projDescription" class="w-full p-2 text-black rounded" placeholder="Project Description"
+            rows="3"></textarea>
+          <input id="projTechnologies" class="w-full p-2 text-black rounded"
+            placeholder="Technologies (e.g., JavaScript, React)" />
+          <input id="projLink" class="w-full p-2 text-black rounded" placeholder="Project Link (optional)" />
+          <select id="projStatus" class="w-full p-2 text-black rounded">
+            <option value="In Progress">In Progress</option>
+            <option value="Completed">Completed</option>
+          </select>
+          <button type="submit" onclick="addProject()" class="px-4 py-2 bg-blue-700 hover:bg-blue-600 rounded">Add
+            Project</button>
+        </form>
+        <ul id="projects-list" class="space-y-4"></ul>
+        <div id="projectUpdate" aria-live="polite" class="sr-only"></div>
+      </div>
+      <div>
+        <h2 class="text-2xl font-semibold mb-4">Project Status Overview</h2>
+        <canvas id="projectChart" class="max-w-full"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // GSAP Animations
+    gsap.registerPlugin(ScrollTrigger);
+    gsap.from(".dashboard h1", {
+      opacity: 0,
+      y: -50,
+      duration: 1,
+      ease: "power2.out",
+    });
+    gsap.from(".dashboard form, .dashboard ul, .dashboard canvas", {
+      opacity: 0,
+      y: 50,
+      duration: 0.8,
+      stagger: 0.2,
+      scrollTrigger: { trigger: ".dashboard", start: "top 80%" },
+    });
+    gsap.to(".parallax-bg", {
+      y: 100,
+      scrollTrigger: { trigger: "body", start: "top top", end: "bottom bottom", scrub: true },
+    });
+
+    // Particles.js
+    particlesJS("particles-js", {
+      particles: {
+        number: { value: 50, density: { enable: true, value_area: 800 } },
+        color: { value: "#B22222" },
+        shape: { type: "circle" },
+        opacity: { value: 0.3, random: true },
+        size: { value: 3, random: true },
+        move: { enable: true, speed: 2, direction: "none", random: true },
+      },
+      interactivity: {
+        events: { onhover: { enable: true, mode: "repulse" } },
+      },
+    });
+
+    // Theme Toggle
+    const toggleTheme = () => {
+      document.body.classList.toggle('dark-theme');
+      const isDark = document.body.classList.contains('dark-theme');
+      document.getElementById('themeToggle').textContent = isDark ? 'Light Mode' : 'Dark Mode';
+    };
+    document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+
+    // Load Projects
+    const loadProjects = () => {
+      const projects = JSON.parse(localStorage.getItem("projects")) || [
+        { title: "BookFlow CLI App", status: "Completed", description: "A CLI tool for managing book collections.", technologies: "Python, SQLite", link: "#" },
+        { title: "Voice-Controlled Map UI", status: "In Progress", description: "Interactive map controlled by voice commands.", technologies: "JavaScript, Web Speech API", link: "#" },
+        { title: "Solar Potential Mapping", status: "In Progress", description: "Visualizing solar energy potential for rooftops.", technologies: "React, Mapbox", link: "#" },
+      ];
+      const ul = document.getElementById("projects-list");
+      ul.innerHTML = "";
+      projects.forEach((project, index) => {
+        const li = document.createElement("li");
+        li.className = "project-card";
+        li.setAttribute("role", "article");
+        li.innerHTML = `
+          <h4 class="text-xl font-semibold">${project.title}</h4>
+          <p class="text-sm text-gray-600">${project.description}</p>
+          <p class="text-sm mt-2"><strong>Technologies:</strong> ${project.technologies}</p>
+          <p class="text-sm mt-1"><strong>Status:</strong> <span class="${project.status === 'Completed' ? 'text-green-600' : 'text-yellow-600'}">${project.status}</span></p>
+          ${project.link !== "#" ? `<a href="${project.link}" class="text-blue-600 hover:underline mt-2 inline-block">View Project</a>` : ""}
+          <div class="mt-2">
+            <button onclick="editProject(${index})" class="text-blue-600 hover:text-blue-500 mr-2">Edit</button>
+            <button onclick="deleteProject(${index})" class="text-red-600 hover:text-red-500">Delete</button>
+          </div>
+        `;
+        ul.appendChild(li);
+      });
+      updateChart(projects);
+    };
+
+    // Add Project
+    function addProject() {
+      const title = document.getElementById("projTitle").value.trim();
+      const description = document.getElementById("projDescription").value.trim();
+      const technologies = document.getElementById("projTechnologies").value.trim();
+      const link = document.getElementById("projLink").value.trim() || "#";
+      const status = document.getElementById("projStatus").value;
+      if (!title) {
+        alert("Project title is required!");
+        document.getElementById("projectUpdate").textContent = "Project title is required.";
+        return;
+      }
+      const projects = JSON.parse(localStorage.getItem("projects")) || [];
+      projects.push({ title, status, description, technologies, link });
+      localStorage.setItem("projects", JSON.stringify(projects));
+      loadProjects();
+      document.getElementById("projTitle").value = "";
+      document.getElementById("projDescription").value = "";
+      document.getElementById("projTechnologies").value = "";
+      document.getElementById("projLink").value = "";
+      document.getElementById("projStatus").value = "In Progress";
+      document.getElementById("projectUpdate").textContent = `Project ${title} added successfully.`;
+      gsap.from(".project-card:last-child", { opacity: 0, x: 50, duration: 0.5 });
+    }
+
+    // Edit Project
+    function editProject(index) {
+      const projects = JSON.parse(localStorage.getItem("projects")) || [];
+      const project = projects[index];
+      const newTitle = prompt("Edit project title:", project.title);
+      const newDescription = prompt("Edit project description:", project.description);
+      const newTechnologies = prompt("Edit technologies:", project.technologies);
+      const newLink = prompt("Edit project link (optional):", project.link);
+      if (newTitle) {
+        projects[index] = {
+          title: newTitle.trim(),
+          status: project.status,
+          description: newDescription ? newDescription.trim() : project.description,
+          technologies: newTechnologies ? newTechnologies.trim() : project.technologies,
+          link: newLink ? newLink.trim() : project.link,
+        };
+        localStorage.setItem("projects", JSON.stringify(projects));
+        loadProjects();
+        document.getElementById("projectUpdate").textContent = `Project ${newTitle} updated successfully.`;
+      }
+    }
+
+    // Delete Project
+    function deleteProject(index) {
+      if (confirm("Delete this project?")) {
+        const projects = JSON.parse(localStorage.getItem("projects")) || [];
+        const deletedTitle = projects[index].title;
+        projects.splice(index, 1);
+        localStorage.setItem("projects", JSON.stringify(projects));
+        loadProjects();
+        document.getElementById("projectUpdate").textContent = `Project ${deletedTitle} deleted successfully.`;
+      }
+    }
+
+    // Project Status Chart
+    let projectChart;
+    function updateChart(projects) {
+      const ctx = document.getElementById("projectChart").getContext("2d");
+      const completed = projects.filter(p => p.status === "Completed").length;
+      const inProgress = projects.filter(p => p.status === "In Progress").length;
+      if (projectChart) projectChart.destroy();
+      projectChart = new Chart(ctx, {
+        type: "pie",
+        data: {
+          labels: ["Completed", "In Progress"],
+          datasets: [{
+            data: [completed, inProgress],
+            backgroundColor: ["#34D399", "#FBBF24"],
+            borderColor: ["#fff", "#fff"],
+            borderWidth: 1,
+          }],
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: { position: "top", labels: { color: "#000" } },
+            title: { display: true, text: "Project Status", color: "#000", font: { size: 18 } },
+          },
+        },
+      });
+    }
+
+    // Logout
+    function logout() {
+      localStorage.removeItem("isAdmin");
+      window.location.href = "../main/index.html";
+    }
+
+    // Check Admin Status
+    document.addEventListener("DOMContentLoaded", () => {
+      if (localStorage.getItem("isAdmin") !== "true") {
+        alert("Unauthorized access. Redirecting to main page...");
+        window.location.href = "../main/index.html";
+      } else {
+        loadProjects();
+      }
+    });
+  </script>
+</body>
+
+</html>

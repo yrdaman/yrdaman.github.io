@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Portfolio of Rakesh Daman, a wandering developer creating innovative projects." />
+  <meta name="keywords" content="Rakesh Daman, developer, portfolio, vagabond, web development" />
+  <meta name="author" content="Rakesh Daman" />
+  <meta property="og:title" content="VAGABOND | Rakesh Daman" />
+  <meta property="og:description"
+    content="Portfolio of Rakesh Daman, a wandering developer creating innovative projects." />
+  <meta property="og:type" content="website" />
+  <title> Rakesh Daman</title>
+  <link href="styles/styles.css" rel="stylesheet" />
+  <script src="main.js" defer></script>
+  <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Draggable.min.js"></script>
+
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+</head>
+
+<body class="min-h-screen">
+
+
+  <nav id="mainNav"
+    class="fixed top-0 left-0 w-full  transition-transform duration-300 bg-white/10 backdrop-blur-md z-50 py-4 px-6">
+    <div class="container mx-auto flex justify-between items-center">
+      <a href="#" class="text-xl font-bold tracking-wider" href="/src/main/index.html">RAKESH DAMAN</a>
+      <div class="nav-links flex items-center gap-6">
+        <a href="#hero" class="hover:text-blue-400 transition-colors">Home</a>
+        <a href="#about" class="hover:text-blue-400 transition-colors">About</a>
+        <a href="#education" class="hover:text-blue-400 transition-colors">Education</a>
+        <a href="#projects" class="hover:text-blue-400 transition-colors">Projects</a>
+        <a href="#skills" class="hover:text-blue-400 transition-colors">Skills</a>
+        <a href="#wall-of-fame" class="hover:text-blue-400 transition-colors">Wall of Fame</a>
+        <a href="#contact"  class="hover:text-blue-400 transition-colors">Contact</a>
+        <a href="resume.pdf" target="_blank" class="hover:text-blue-400 transition-colors">Resume</a>
+
+        <button id="themeToggle" class="p-2 rounded-full hover:text-blue-400 transition-colors">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+          </svg>
+        </button>
+        <a href="https://yrdaman.github.io/spacefolio007/spacegame/test.html" target="_blank"
+          class="game-icon p-2 hover:text-blue-400 transition-colors">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z">
+            </path>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <section id="hero" class="hero text-center">
+    <h1 class="header-text text-5xl md:text-6xl font-bold tracking-widest">RAKESH DAMAN</h1>
+    <h2 id="typing" class="header-text text-xl text-black-400 italic mt-4">
+
+    </h2>
+    
+
+  </section>
+
+
+  <!-- ABOUT -->
+<section id="about" class="section max-w-5xl mx-auto my-12 px-4">
+  <h3 class="text-3xl font-semibold mb-6 text-center">About Me</h3>
+  <div class="space-y-6">
+    <p class="text-xl md:text-2xl font-bold text-gray-700 leading-relaxed">
+      Curious about technology and driven to create,
+      I’m shaping my path in computer science with a growing focus on web development and data science.
+      My journey began with a fascination for how things work and has led me to explore Python, JavaScript,
+      and, more recently, hands-on projects in machine learning at Avanthi Institute of Technology.
+    </p>
+
+    <p class="text-xl md:text-2xl font-bold text-gray-700 leading-relaxed">
+      My journey as a wandering developer has taken me through Python, JavaScript, Data Science, and beyond.
+    </p>
+
+    <p class="text-xl md:text-2xl font-bold text-gray-700 leading-relaxed">
+      Let's create something amazing together!
+    </p>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education" class="section py-12 relative overflow-hidden">
+  <h3 class="text-3xl font-semibold mb-12 text-center">Education</h3>
+  <div class="max-w-xl mx-auto relative">
+
+    <!-- Animated Vertical Line -->
+    <div class="absolute top-0 left-1/2 transform -translate-x-1/2 h-full w-1 
+            bg-gradient-to-b from-black via-gray-700 to-blue-500 animate-pulseLine"></div>
+
+    <!-- Floating Images -->
+    <img src="graduation-cap.png" alt="Graduation Cap"
+     class="hidden md:block absolute top-12  w-20 opacity-80 animate-float pointer-events-none">
+
+<img src="certificate.png" alt="Certificate"
+     class="hidden md:block absolute top-[300px] -right-2 w-20 opacity-80 animate-float pointer-events-none">
+
+<img src="certificate.png" alt="Certificate"
+     class="hidden md:block absolute top-[550px]  w-20 opacity-80 animate-float pointer-events-none">
+
+    <!-- B.Tech -->
+    <div class="mb-12 relative">
+      <div class="mt-3 ml-12 md:ml-20 bg-white shadow-lg rounded-lg p-6">
+        <h4 class="text-xl font-extrabold text-gray-800 mb-2">Bachelor of Technology</h4>
+        <p class="text-gray-600 text-sm font-bold mb-1">CSE (Data Science)</p>
+        <p class="text-gray-600 text-sm italic font-bold mb-1">Avanthi Institute of Engineering and Technology</p>
+        <p class="text-gray-600 text-sm mb-2">2022 – 2025</p>
+        <p class="inline-block bg-gray-200 text-gray-800 text-sm font-semibold px-3 py-1 rounded">
+          CGPA: 7.01 / 10
+        </p>
+      </div>
+    </div>
+
+    <!-- Diploma -->
+    <div class="mb-12 relative">
+      <div class="mt-3 mr-12 md:mr-20 bg-white shadow-lg rounded-lg p-6">
+        <h4 class="text-xl font-extrabold text-gray-800 mb-2">Diploma</h4>
+        <p class="text-gray-600 text-sm font-bold mb-1">Electrical and Electronics Engineering</p>
+        <p class="text-gray-600 text-sm italic font-bold mb-1">T.R.R. College of Polytechnic</p>
+        <p class="text-gray-600 text-sm mb-2">2019 – 2022</p>
+        <p class="inline-block bg-gray-200 text-gray-800 text-sm font-semibold px-3 py-1 rounded">
+          CGPA: 7.91 / 10
+        </p>
+      </div>
+    </div>
+
+    <!-- SSC -->
+    <div class="mb-12 relative">
+      <div class="mt-3 ml-12 md:ml-20 bg-white shadow-lg rounded-lg p-6">
+        <h4 class="text-xl font-extrabold text-gray-800 mb-2">Secondary School Certificate</h4>
+        <p class="text-gray-600 text-sm font-bold mb-1">10<sup>th</sup> Class</p>
+        <p class="text-gray-600 text-sm italic font-bold mb-1">Santhi Nikethan Talent School</p>
+        <p class="text-gray-600 text-sm mb-2">March 2019</p>
+        <p class="inline-block bg-gray-200 text-gray-800 text-sm font-semibold px-3 py-1 rounded">
+          CGPA: 8.7 / 10
+        </p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Floating & Line Animation -->
+<style>
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+@keyframes pulseLine {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 0% 100%;
+  }
+}
+.animate-pulseLine {
+  background-size: 100% 200%;
+  background-repeat: no-repeat;
+  animation: pulseLine 3s linear infinite;
+}
+</style>
+
+
+
+ <!-- Projectsssssssssss -->
+<section id="projects" class="section py-12">
+  <h3 class="text-3xl font-semibold mb-8 text-center">Projects</h3>
+  <div class="grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto px-6">
+
+    <!-- UltraTech Pick -->
+    <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-1 hover:shadow-2xl transition duration-300 flex flex-col">
+      <div class="p-6 flex flex-col flex-grow">
+        <h4 class="text-xl font-extrabold mb-2 text-gray-800">UltraTech Pick</h4>
+        <p class="text-gray-600 text-sm mb-4">
+          Internship project to analyze and optimize supply chain decisions for UltraTech Cement, using Python and data analysis techniques.
+        </p>
+        <div class="flex flex-wrap justify-center gap-2 mt-2 mb-3">
+          <span class="bg-gray-200 text-gray-800 text-sm font-semibold px-2 py-1 rounded">Python</span>
+          <span class="bg-gray-200 text-gray-800 text-sm font-semibold px-2 py-1 rounded">Data Analysis</span>
+        </div>
+        <a href="https://github.com/yrdaman/UltraTechPick"
+           target="_blank" rel="noopener noreferrer"
+           class="inline-block mt-auto bg-black text-white text-sm font-semibold px-3 py-2 rounded transition duration-300 transform hover:scale-110">
+          View on GitHub
+        </a>
+      </div>
+    </div>
+
+    <!-- Portfolio Website -->
+    <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-1 hover:shadow-2xl transition duration-300 flex flex-col">
+      <div class="p-6 flex flex-col flex-grow">
+        <h4 class="text-xl font-extrabold mb-2 text-gray-800">Portfolio Website</h4>
+        <p class="text-gray-600 text-sm mb-4">
+          My personal classic themed portfolio built with Tailwind CSS, js, custom animations, and modern UI to showcase my work and skills.
+        </p>
+        <div class="flex flex-wrap justify-center gap-2 mt-2 mb-3">
+          <span class="bg-gray-200 text-gray-800 text-sm font-semibold px-2 py-1 rounded">TailwindCSS</span>
+          <span class="bg-gray-200 text-gray-800 text-sm font-semibold px-2 py-1 rounded">GSAP</span>
+          <span class="bg-gray-200 text-gray-800 text-sm font-semibold px-2 py-1 rounded">JavaScript</span>
+        </div>
+        <a href="https://github.com/yrdaman"
+           target="_blank" rel="noopener noreferrer"
+           class="inline-block mt-auto bg-black text-white text-sm font-semibold px-3 py-2 rounded transition duration-300 transform hover:scale-110">
+          View on GitHub
+        </a>
+      </div>
+    </div>
+
+    <!-- BookFlow CLI -->
+    <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-1 hover:shadow-2xl transition duration-300 flex flex-col">
+      <div class="p-6 flex flex-col flex-grow">
+        <h4 class="text-xl font-extrabold mb-2 text-gray-800">BookFlow CLI</h4>
+        <p class="text-gray-600 text-sm mb-4">
+          A command-line tool for managing a virtual bookshelf can do Add, borrow, return, and review books easily and Keep your reading organized from the terminal.<div class="flex flex-wrap justify-center gap-2 mt-2 mb-3">
+          <span class="bg-gray-200 text-gray-800 text-sm font-semibold px-2 py-1 rounded">Python</span>
+          <span class="bg-gray-200 text-gray-800 text-sm font-semibold px-2 py-1 rounded">CLI</span>
+        </div>
+        <a href="#"
+           target="_blank" rel="noopener noreferrer"
+           class="inline-block mt-auto bg-black text-white text-sm font-semibold px-3 py-2 rounded transition duration-300 transform hover:scale-110">
+          View on GitHub
+        </a>
+      </div>
+    </div>
+
+    <!-- Spacefolio -->
+    <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-1 hover:shadow-2xl transition duration-300 flex flex-col">
+      <div class="p-6 flex flex-col flex-grow">
+        <h4 class="text-xl font-extrabold mb-2 text-gray-800">Spacefolio</h4>
+        <p class="text-gray-600 text-sm mb-4">
+          Hackathon project blending a portfolio with an interactive space-themed game experience. Developed with HTML, CSS, JavaScript, and animations.
+        </p>
+        <div class="flex flex-wrap justify-center gap-2 mt-2 mb-3">
+          <span class="bg-gray-200 text-gray-800 text-sm font-semibold px-2 py-1 rounded">JavaScript</span>
+          <span class="bg-gray-200 text-gray-800 text-sm font-semibold px-2 py-1 rounded">CSS</span>
+          <span class="bg-gray-200 text-gray-800 text-sm font-semibold px-2 py-1 rounded">HTML</span>
+        </div>
+        <a href="https://github.com/yrdaman/spacefolio007"
+           target="_blank" rel="noopener noreferrer"
+           class="inline-block mt-auto bg-black text-white text-sm font-semibold px-3 py-2 rounded transition duration-300 transform hover:scale-110">
+          View on GitHub
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+
+
+
+  <section id="skills" class="max-w-6xl mx-auto p-6">
+    <h3 class="text-3xl font-semibold text-center text-black mb-6">Skills</h3>
+    <div id="skills-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-8">
+      <!-- js code here -->
+    </div>
+
+  </section>
+
+ <section id="contact" class="section flex justify-center items-center min-h-screen ">
+  <div
+    class="relative rounded-xl shadow-lg  p-8 max-w-4xl w-full grid grid-cols-1 md:grid-cols-2 gap-8"
+    style="background-color: rgb(215, 214, 219);"
+  >
+    <!-- Contact Form -->
+    <div class="flex flex-col justify-center">
+      <h3 class="text-3xl font-semibold mb-6 text-center md:text-left">Contact</h3>
+      <form id="contactForm" class="space-y-4">
+        <input type="text" id="name" autocomplete="name"
+          class="w-full p-3 text-black rounded border border-black focus:outline-none focus:ring-2 focus:ring-blue-500"
+          placeholder="Your Name" required aria-required="true" />
+        <input type="email" id="email" autocomplete="email"
+          class="w-full p-3 text-black rounded border border-black focus:outline-none focus:ring-2 focus:ring-blue-500"
+          placeholder="Your Email" required aria-required="true" />
+        <textarea id="message" autocomplete="off"
+          class="w-full p-3 text-black rounded border border-black focus:outline-none focus:ring-2 focus:ring-blue-500"
+          rows="4" placeholder="Your Message" required aria-required="true"></textarea>
+        <button type="submit" class="px-4 py-3 bg-blue-700 hover:bg-blue-600 rounded text-white border-black">Send</button>
+      </form>
+    </div>
+    <!-- Quote Randomizer -->
+    <div id="quoteBox" class="mb-4 mt-40 p-4  rounded text-gray-800 max-w-auto h-20 text-sm font-medium"></div>
+    
+     
+    <div class="absolute bottom-0 right-0 ">
+      <img src="obito.jpg" alt="Obito"
+        class="w-32 h-32 md:w-48 md:h-48 object-contain rounded-lg pointer-events-none ">
+    </div>
+  </div>
+</section>
+
+
+<footer class="text-center text-white font-bold italic text-sm py-6">
+  <p class="  px-2 py-1 rounded transition duration-300">
+    © 2025 Rakesh Daman AKA yrdaman. All rights reserved.
+  </p>
+</footer>
+
+
+  <div id="adminLogin" class="hidden fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50"
+    role="dialog" aria-modal="true" aria-labelledby="admin-title">
+    <div class="bg-gray-900 p-6 rounded space-y-4 max-w-sm w-full">
+      <h2 id="admin-title" class="text-xl font-semibold">Admin Login</h2>
+      <input type="password" id="adminPass" class="w-full p-2 text-black rounded" placeholder="Enter secret passphrase"
+        aria-required="true" />
+      <button onclick="unlockAdmin()" class="w-full bg-green-700 hover:bg-green-600 py-2 rounded">Unlock</button>
+    </div>
+  </div>
+  
+  <div id="draggableContainer" class="fixed z-50 cursor-grab" style="top: 80%; left: 85%;">
+
+  <figure class="snip1578">
+    <img
+      src="yrdaman.png"
+      class="mx-auto w-16 h-16 rounded-full object-cover"
+      alt="@yrdaman"
+    />
+    <figcaption class="text-center">
+      <h3 class="text-sm -mt-2" style="font-weight: 800 !important;">YRDAMAN</h3>
+      <div class="icons flex justify-center translate-x-4 gap-1 mt-2 text-xl">
+        <a href="#" aria-label="X Twitter">
+          <i class="fa-brands fa-x-twitter text-gray-600 hover:text-black"></i>
+        </a>
+        <a href="#" aria-label="Instagram">
+          <i class="fa-brands fa-instagram text-gray-600 hover:bg-gradient-to-tr hover:from-yellow-400 hover:via-pink-500 hover:to-purple-600 hover:bg-clip-text hover:text-transparent"></i>
+        </a>
+        <a href="#" aria-label="GitHub">
+          <i class="fa-brands fa-github text-gray-600 hover:text-gray-800"></i>
+        </a>
+        <a href="#" aria-label="LinkedIn">
+          <i class="fa-brands fa-linkedin-in text-gray-600 hover:text-blue-700"></i>
+        </a>
+      </div>
+    </figcaption>
+  </figure>
+</div>
+
+
+
+</body>
+
+</html>
