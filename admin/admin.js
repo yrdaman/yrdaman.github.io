@@ -41,27 +41,7 @@
     };
     document.getElementById('themeToggle').addEventListener('click', toggleTheme);
 
-    // Load Projects
-    const loadProjects = () => {
-      const projects = JSON.parse(localStorage.getItem("projects")) || [
-        { title: "BookFlow CLI App", status: "Completed" },
-        { title: "Voice-Controlled Map UI", status: "In Progress" },
-        { title: "Solar Potential Mapping", status: "In Progress" },
-      ];
-      const ul = document.getElementById("projects-list");
-      ul.innerHTML = "";
-      projects.forEach((project, index) => {
-        const li = document.createElement("li");
-        li.className = "project-item py-3 px-4 rounded bg-gray-900/50";
-        li.innerHTML = `
-          🗂️ <strong>${project.title}</strong> – <span class="${project.status === 'Completed' ? 'text-green-400' : 'text-yellow-400'}">${project.status}</span>
-          <button onclick="editProject(${index})" class="ml-4 text-blue-400 hover:text-blue-300">Edit</button>
-          <button onclick="deleteProject(${index})" class="ml-2 text-red-400 hover:text-red-300">Delete</button>
-        `;
-        ul.appendChild(li);
-      });
-      updateChart(projects);
-    };
+    
 
     // Add Project
     function addProject() {
