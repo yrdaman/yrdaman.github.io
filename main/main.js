@@ -132,12 +132,12 @@ const quotes = [
     "\"Great things never come from comfort zones.\"",
     "\"Don’t watch the clock; do what it does. Keep going.\" – Sam Levenson",
     "\"Every great developer you know got there by solving problems they were unqualified to solve until they actually did it.\" – Patrick McKenzie",
-  
+
     // Anime - Vagabond
     "\"The way of the sword is the way of solitude.\" – Musashi (Vagabond)",
     "\"Perfection is an illusion. Keep moving forward.\" – Musashi (Vagabond)",
     "\"I choose to live my life as I see fit, without regrets.\" – Musashi (Vagabond)",
-  
+
     // Anime - Naruto
     "\"I’m not gonna run away. I never go back on my word. That’s my nindo, my ninja way.\" – Naruto Uzumaki",
     "\"When people are protecting something truly special to them, they truly can become as strong as they can be.\" – Naruto Uzumaki",
@@ -220,17 +220,67 @@ skills.forEach(skill => {
     skillsGrid.appendChild(skillDiv);
 });
 
-// Contact Form Handler
-document.getElementById("contactForm").addEventListener("submit", function (e) {
-    e.preventDefault();
-    const name = document.getElementById("name").value;
-    const email = document.getElementById("email").value;
-    const message = document.getElementById("message").value;
-    if (name && email && message) {
-        alert(`Message sent from ${name} (${email}): ${message}`);
-        this.reset();
-    } else {
-        alert("Please fill all fields.");
+// Contact Form Handler — EMAILJS CONTACT FORM HANDLER (production)
+document.addEventListener("DOMContentLoaded", function () {
+    // --- EmailJS initialization ---
+    emailjs.init("c-ECyzHypb5LFJUIo"); // <-- your public key
+
+    const form = document.getElementById("contactForm");
+    const statusBox = document.getElementById("quoteBox");
+    if (!form) return;
+    const btn = form.querySelector("button[type='submit']");
+
+    form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const name = form.querySelector("#name").value.trim();
+        const email = form.querySelector("#email").value.trim();
+        const message = form.querySelector("#message").value.trim();
+
+        // --- Validation ---
+        if (!name || !email || !message) {
+            return showStatus("⚠️ Please fill in all fields.", true);
+        }
+        if (!/^\S+@\S+\.\S+$/.test(email)) {
+            return showStatus("⚠️ Invalid email format.", true);
+        }
+
+        // --- Disable button while sending ---
+        btn.disabled = true;
+        const originalText = btn.textContent;
+        btn.textContent = "Sending...";
+
+        try {
+            await emailjs.send("service_lftffba", "template_76imdng", {
+                from_name: name,
+                from_email: email,
+                message: message,
+                to_email: "yrdaman196+portfolio@gmail.com",
+                reply_to: email,
+                subject: "📩 Message From Portfolio ⚡",
+            });
+
+            showStatus("✅ Message sent successfully!", false);
+            form.reset();
+        } catch (err) {
+            console.error("EmailJS Error:", err);
+            showStatus("❌ Failed to send. Try again later.", true);
+        } finally {
+            btn.disabled = false;
+            btn.textContent = originalText;
+        }
+    });
+
+    function showStatus(text, isError) {
+        if (!statusBox) return alert(text);
+        statusBox.textContent = text;
+        statusBox.style.color = isError ? "#b91c1c" : "#064e3b";
+        statusBox.style.background = isError ? "#fee2e2" : "#d1fae5";
+        setTimeout(() => {
+            statusBox.textContent = "";
+            statusBox.style.background = "";
+            statusBox.style.color = "";
+        }, 4000);
     }
 });
 
@@ -270,16 +320,16 @@ window.addEventListener('scroll', () => {
 
 // Preloader
 window.addEventListener("load", function () {
-  setTimeout(() => {
-    document.getElementById("preloader").style.opacity = "0";
-    document.getElementById("preloader").style.pointerEvents = "none";
-  }, 2000);
+    setTimeout(() => {
+        document.getElementById("preloader").style.opacity = "0";
+        document.getElementById("preloader").style.pointerEvents = "none";
+    }, 2000);
 });
 
 Draggable.create("#preloader img", {
-  type: "x,y",
-  inertia: true,
-  bounds: window
+    type: "x,y",
+    inertia: true,
+    bounds: window
 });
 
 
@@ -336,7 +386,7 @@ document.addEventListener("DOMContentLoaded", () => {
 // Block right-click & dev tools
 document.addEventListener("contextmenu", e => e.preventDefault());
 document.addEventListener("keydown", e => {
-  if (e.key === "F12") e.preventDefault();
-  if (e.ctrlKey && e.shiftKey && ["I", "J", "C"].includes(e.key)) e.preventDefault();
-  if (e.ctrlKey && e.key === "u") e.preventDefault();
+    if (e.key === "F12") e.preventDefault();
+    if (e.ctrlKey && e.shiftKey && ["I", "J", "C"].includes(e.key)) e.preventDefault();
+    if (e.ctrlKey && e.key === "u") e.preventDefault();
 });
