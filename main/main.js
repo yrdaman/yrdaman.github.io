@@ -252,8 +252,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
         try {
             await emailjs.send("service_lftffba", "template_76imdng", {
-                from_name: name,
-                from_email: email,
+                name: name,
+                email: email,
                 message: message,
                 to_email: "yrdaman196+portfolio@gmail.com",
                 reply_to: email,
