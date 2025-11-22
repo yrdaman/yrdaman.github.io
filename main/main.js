@@ -180,7 +180,7 @@ const skills = [
     },
     {
         category: "Data Structures & Algorithms",
-        description: "Strong understanding of data structures and algorithm problem-solving."
+        description: "Familiar with arrays, strings, stacks, queues, and basic problem solving."
     },
     {
         category: "Tools & Platforms",
