@@ -1,0 +1,33 @@
+<div class="project-card bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-1 hover:shadow-2xl transition duration-300 flex flex-col">
+
+  <div class="p-6 flex flex-col flex-grow">
+
+    <!-- Title -->
+    <h4 class="project-title text-xl font-extrabold mb-2 text-gray-800">
+      {{TITLE}}
+    </h4>
+
+    <!-- Description -->
+    <p class="project-desc text-gray-600 text-sm mb-4">
+      {{DESCRIPTION}}
+    </p>
+
+    <!-- Tech Stack -->
+    <div class="project-tags flex flex-wrap justify-center gap-2 mt-2 mb-3">
+      {{TAGS}}
+      <!-- Example tag:
+           <span class="bg-gray-200 text-gray-800 text-sm font-semibold px-2 py-1 rounded">Python</span>
+      -->
+    </div>
+
+    <!-- GitHub Button -->
+    <a href="{{GITHUB_URL}}"
+       target="_blank"
+       rel="noopener noreferrer"
+       class="inline-block mt-auto bg-black text-white text-sm font-semibold px-3 py-2 rounded transition duration-300 transform hover:scale-110">
+       View on GitHub
+    </a>
+
+  </div>
+
+</div>
